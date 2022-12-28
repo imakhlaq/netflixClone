@@ -1,10 +1,28 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { BellIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, BellIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  //for nav scroll fade
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScreoll = () => {
+      //checking scrollY on window
+      if (window.scrollY) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    //attaching add event listner on window
+    window.addEventListener("scroll", handleScreoll);
+    return () => {
+      window.addEventListener("scroll", handleScreoll);
+    };
+  }, []);
+
   return (
-    <header>
+    <header className={`${isScrolled && "bg-[#141414]"}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
         <img
           src="https://rb.gy/ulxxee"
