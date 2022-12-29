@@ -19,3 +19,9 @@
     @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3];
   }
 }
+
+@layer components {
+  .bannerBtn {
+    @apply flex items-center gap-x-2 rounded flex-row justify-center px-5 py-1.5 text-sm font-semibold transition-all hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
+  }
+}
