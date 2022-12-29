@@ -3,11 +3,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-  //for nav scroll fade
+  //for nav scroll fade (use observerApi instead)
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScreoll = () => {
       //checking scrollY on window
+
       if (window.scrollY) {
         setIsScrolled(true);
       } else {
