@@ -40,7 +40,7 @@ export default function Home({
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
         {/* banner */}
         <Banner netflixOriginals={netflixOriginals} />
-        <section>
+        <section className="md:space-y-24">
           <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
