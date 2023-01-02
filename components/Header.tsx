@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const Header = () => {
   //for nav scroll fade (use observerApi instead)
   const [isScrolled, setIsScrolled] = useState(false);
+  
   useEffect(() => {
     const handleScreoll = () => {
       //checking scrollY on window
