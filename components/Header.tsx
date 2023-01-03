@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const Header = () => {
   //for nav scroll fade (use observerApi instead)
   const [isScrolled, setIsScrolled] = useState(false);
-  
+
   useEffect(() => {
     const handleScreoll = () => {
       //checking scrollY on window
@@ -16,6 +16,7 @@ const Header = () => {
         setIsScrolled(false);
       }
     };
+    
     //attaching add event listner on window
     window.addEventListener("scroll", handleScreoll);
     return () => {
