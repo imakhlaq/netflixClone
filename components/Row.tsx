@@ -19,7 +19,7 @@ const Row = ({ title, movies }: Props) => {
 
     if (rowRef.current) {
       const { scrollLeft, clientWidth } = rowRef.current;
-
+      //checking client width and and scrolling by adding the inisital
       const scrollTo =
         direction === "left"
           ? scrollLeft - clientWidth
