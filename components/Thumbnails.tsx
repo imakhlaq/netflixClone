@@ -2,6 +2,8 @@ import { Movie } from "../typing";
 import Image from "next/legacy/image";
 
 type Props = {
+  //using firebase
+  //movie:Movie | Documents
   movie: Movie;
 };
 const Thumbnails = ({ movie }: Props) => {
