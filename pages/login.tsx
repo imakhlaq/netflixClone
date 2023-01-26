@@ -1,8 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-import Image from "next/legacy/image";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-const login = () => {
+interface Inputs {
+  email: string;
+  password: string;
+}
+
+const Login = () => {
+  const [login, setLogin] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent ">
       <Head>
@@ -32,12 +49,25 @@ const login = () => {
         height={150}
       />
 
-      <form className="pt-20 px-16 pb-52 bg-black/75 space-y-4 felx flex-col rounded-md ">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="pt-20 px-16 pb-52 bg-black/75 space-y-4 felx flex-col rounded-md "
+      >
         <h1 className="text-3xl font-semibold mb-9">Sign In</h1>
         <div className="flex flex-col space-y-5">
-          <input type="email" placeholder="Email" className="signInput" />
+          <input
+            type="email"
+            placeholder="Email"
+            className="signInput"
+            {...register("email", { required: true })}
+          />
 
-          <input type="password" placeholder="Password" className="signInput" />
+          <input
+            type="password"
+            placeholder="Password"
+            className="signInput"
+            {...register("password", { required: true })}
+          />
         </div>
         <button
           type="submit"
@@ -71,4 +101,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
