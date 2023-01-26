@@ -1,10 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import { MagnifyingGlassIcon, BellIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const Header = () => {
   //for nav scroll fade (use observerApi instead)
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const { logout } = useAuth();
 
   useEffect(() => {
     const handleScreoll = () => {
@@ -16,7 +20,7 @@ const Header = () => {
         setIsScrolled(false);
       }
     };
-    
+
     //attaching add event listner on window
     window.addEventListener("scroll", handleScreoll);
     return () => {
@@ -40,7 +44,9 @@ const Header = () => {
           <li className="headerLink">TV Shows</li>
           <li className="headerLink">Movies</li>
           <li className="headerLink">New & Popular</li>
-          <li className="headerLink">My List</li>
+          <li className="headerLink" onClick={() => logout(true)}>
+            My List
+          </li>
         </ul>
       </div>
       <div className="flex items-center space-x-4 text-sm font-light ">

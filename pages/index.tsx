@@ -1,9 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import requests from "../utils/requests";
 import { Movie } from "../typing";
 import Row from "../components/Row";
+import useAuth from "../hooks/useAuth";
+import loading from "../assets/loading.svg";
 
 interface Props {
   netflixOriginals: Movie[];
@@ -26,6 +29,16 @@ export default function Home({
   topRated,
   trendingNow,
 }: Props) {
+  const { loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <img src={`${loading}`} alt="Loading" className="animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
       <Head>
