@@ -2,6 +2,8 @@
 import Head from "next/head";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
+
 
 interface Inputs {
   email: string;
@@ -10,7 +12,9 @@ interface Inputs {
 
 const Login = () => {
   const [login, setLogin] = useState(false);
+  const {signIn,signUp}=useAuth()
 
+  //react form hook
   const {
     register,
     handleSubmit,
@@ -18,7 +22,14 @@ const Login = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+
+    if(login){
+      await signIn(email,password);
+    }else{
+      await signUp(email,password);
+    }
+  };
 
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent ">
@@ -55,13 +66,20 @@ const Login = () => {
       >
         <h1 className="text-3xl font-semibold mb-9">Sign In</h1>
         <div className="flex flex-col space-y-5">
+          {errors.email && (
+            <span className="text-orange-500">Please enter a valid email</span>
+          )}
           <input
             type="email"
             placeholder="Email"
             className="signInput"
             {...register("email", { required: true })}
           />
-
+          {errors.password && (
+            <span className="text-orange-500 max-w-sm">
+              Your password must contain between 4 and 60 characters
+            </span>
+          )}
           <input
             type="password"
             placeholder="Password"
@@ -72,6 +90,7 @@ const Login = () => {
         <button
           type="submit"
           className="text-md text-center bg-red-600 py-3 w-full font-semibold rounded-md !mt-10"
+          onClick={() => setLogin(true)}
         >
           Sign In
         </button>
@@ -87,9 +106,12 @@ const Login = () => {
         <div className="flex flex-col space-y-3 text-[gray]">
           <p>
             New to Netflix?{"  "}
-            <a href="dadad.caca" className="text-white hover:underline">
+            <button
+              onClick={() => setLogin(false)}
+              className="text-white hover:underline"
+            >
               Sign up now.
-            </a>
+            </button>
           </p>
           <p className="max-w-sm text-sm text-[#b3b3b3]">
             This page is protected by Google reCAPTCHA to ensure you&apos;re not
