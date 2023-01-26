@@ -8,7 +8,8 @@ import Row from "../components/Row";
 import useAuth from "../hooks/useAuth";
 import imge from "../assets/loading.svg";
 import { useRecoilValue } from "recoil";
-import { modalState } from "../atoms/modelAtoms";
+import { modalState } from "../atoms/modalAtoms";
+import Modal from "../components/Modal";
 
 interface Props {
   netflixOriginals: Movie[];
@@ -68,6 +69,7 @@ export default function Home({
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
+      {showModel && <Modal />}
     </div>
   );
 }

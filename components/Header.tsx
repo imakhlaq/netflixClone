@@ -58,7 +58,7 @@ const Header = () => {
             src="https://rb.gy/g1pwyx"
             alt="acc"
             className="cursor-pointer rounded"
-          />
+        />
         </Link>
       </div>
     </header>
