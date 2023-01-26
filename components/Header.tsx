@@ -44,7 +44,7 @@ const Header = () => {
           <li className="headerLink">TV Shows</li>
           <li className="headerLink">Movies</li>
           <li className="headerLink">New & Popular</li>
-          <li className="headerLink" onClick={() => logout(true)}>
+          <li className="headerLink" onClick={() => logout()}>
             My List
           </li>
         </ul>

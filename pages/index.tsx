@@ -6,7 +6,9 @@ import requests from "../utils/requests";
 import { Movie } from "../typing";
 import Row from "../components/Row";
 import useAuth from "../hooks/useAuth";
-import loading from "../assets/loading.svg";
+import imge from "../assets/loading.svg";
+import { useRecoilValue } from "recoil";
+import { modalState } from "../atoms/modelAtoms";
 
 interface Props {
   netflixOriginals: Movie[];
@@ -31,10 +33,12 @@ export default function Home({
 }: Props) {
   const { loading } = useAuth();
 
+  const showModel = useRecoilValue(modalState);
+
   if (loading) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
-        <img src={`${loading}`} alt="Loading" className="animate-spin" />
+        <img src={`${imge}`} alt="Loading" className="animate-spin" />
       </div>
     );
   }
