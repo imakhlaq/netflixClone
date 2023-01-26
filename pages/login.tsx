@@ -21,7 +21,7 @@ const login = () => {
       <img
         src="https://rb.gy/p2hphi"
         alt="sda"
-        className="object-fill -z-20 absolute"
+        className="object-cover -z-20 absolute h-screen w-screen"
       />
 
       <img
@@ -32,20 +32,12 @@ const login = () => {
         height={150}
       />
 
-      <form className="pt-20 px-16 pb-52 bg-black space-y-4 felx flex-col rounded-md ">
+      <form className="pt-20 px-16 pb-52 bg-black/75 space-y-4 felx flex-col rounded-md ">
         <h1 className="text-3xl font-semibold mb-9">Sign In</h1>
         <div className="flex flex-col space-y-5">
-          <input
-            type="email"
-            placeholder="Email"
-            className="bg-[#333] py-3 px-5 text-gray-600 text-xl rounded-md  focus:outline-none"
-          />
+          <input type="email" placeholder="Email" className="signInput" />
 
-          <input
-            type="password"
-            placeholder="Password"
-            className="bg-[#333] py-3 px-5 text-gray-600 text-xl rounded-md cursor-pointer focus:outline-none"
-          />
+          <input type="password" placeholder="Password" className="signInput" />
         </div>
         <button
           type="submit"
@@ -62,9 +54,12 @@ const login = () => {
             Need help?
           </a>
         </div>
-        <div className="flex flex-col space-y-3">
+        <div className="flex flex-col space-y-3 text-[gray]">
           <p>
-            New to Netflix? <a href="dadad.caca">Sign up now.</a>
+            New to Netflix?{"  "}
+            <a href="dadad.caca" className="text-white hover:underline">
+              Sign up now.
+            </a>
           </p>
           <p className="max-w-sm text-sm text-[#b3b3b3]">
             This page is protected by Google reCAPTCHA to ensure you&apos;re not

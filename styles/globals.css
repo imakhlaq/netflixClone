@@ -10,6 +10,9 @@
   header {
     @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6;
   }
+  .signInput {
+    @apply bg-[#333] py-3 px-5 text-[gray] text-xl rounded-md  focus:outline-none placeholder-[gray];
+  }
 }
 
 /* custom classNames */
