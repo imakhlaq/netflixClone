@@ -52,7 +52,7 @@ const Modal = () => {
     <MuiModal
       open={showModal}
       onClose={handleClose}
-      className="fixed !top-7 left-0 right-0 z-50 w-full max-w-5xl mx-auto overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
+      className="fixed !top-7 left-0 right-0 z-50 w-full max-w-5xl mx-auto overflow-hidden overflow-y-scroll rounded-md scrollbar-hide rounded-md"
     >
       <>
         <button
@@ -97,23 +97,25 @@ const Modal = () => {
           </div>
         </div>
 
-        <div className="flex flex-col px-12 py-8 space-y-4 bg-[#141414]">
-          <div></div>
-          <div className="text-xl text-white">
+        <div className="flex flex-col px-12 py-8 space-y-2 bg-[#141414] justify-center rounded-b-md">
+          <div>
+            <p>{data?.release_date}</p>
+          </div>
+          <div className="text-white text-lg max-w-2xl mb-20">
             <p>{data?.overview}</p>
           </div>
-          <div className="flex gap-2">
-            <p>Genres: </p>
+          <div className="flex gap-2 ">
+            <p className="text-[#474747]">Genres: </p>
             {genres.map((genre) => (
-              <p key={genre.id}>{genre.name}</p>
+              <p key={genre.id}>{genre.name},</p>
             ))}
           </div>
           <div className="flex gap-2">
-            <p>Original Language: </p>
+            <p className="text-[#474747]">Original Language: </p>
             <p> {data?.original_language}</p>
           </div>
           <div className="flex gap-2">
-            <p>Total votes: </p>
+            <p className="text-[#474747]">Total votes: </p>
             <p>{data?.vote_count}</p>
           </div>
         </div>
