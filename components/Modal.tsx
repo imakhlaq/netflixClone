@@ -3,7 +3,7 @@ import { modalState, movieState } from "../atoms/modalAtoms";
 import { useRecoilState } from "recoil";
 import { HiOutlineXMark } from "react-icons/hi2";
 import { useEffect, useState } from "react";
-import { Element, Genre } from "../typing";
+import { Element, Genre, Movie } from "../typing";
 import ReactPlayer from "react-player";
 import { FaPlay, FaThumbsUp, FaVolumeOff, FaVolumeUp } from "react-icons/fa";
 import { PlusIcon } from "@heroicons/react/24/outline";
@@ -14,6 +14,7 @@ const Modal = () => {
   const [trailor, setTrailor] = useState("");
   const [genres, setGenres] = useState<Genre[]>([]);
   const [isMuted, setIsMuted] = useState(false);
+  const [data, setData] = useState<Movie>();
 
   useEffect(() => {
     if (!movie) return;
@@ -37,9 +38,11 @@ const Modal = () => {
       if (res?.genres) {
         setGenres(res.genres);
       }
+      setData(res);
     };
     fetchMovie();
   }, [movie]);
+  console.log(data);
 
   const handleClose = () => {
     setshowModal(false);
@@ -94,7 +97,26 @@ const Modal = () => {
           </div>
         </div>
 
-        
+        <div className="flex flex-col px-12 py-8 space-y-4 bg-[#141414]">
+          <div></div>
+          <div className="text-xl text-white">
+            <p>{data?.overview}</p>
+          </div>
+          <div className="flex gap-2">
+            <p>Genres: </p>
+            {genres.map((genre) => (
+              <p key={genre.id}>{genre.name}</p>
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <p>Original Language: </p>
+            <p> {data?.original_language}</p>
+          </div>
+          <div className="flex gap-2">
+            <p>Total votes: </p>
+            <p>{data?.vote_count}</p>
+          </div>
+        </div>
       </>
     </MuiModal>
   );
