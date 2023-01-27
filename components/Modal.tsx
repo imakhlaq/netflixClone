@@ -52,7 +52,7 @@ const Modal = () => {
     <MuiModal
       open={showModal}
       onClose={handleClose}
-      className="fixed !top-7 left-0 right-0 z-50 w-full max-w-5xl mx-auto overflow-hidden overflow-y-scroll rounded-md scrollbar-hide rounded-md"
+      className="fixed !top-7 left-0 right-0 z-50 w-full max-w-5xl mx-auto overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
     >
       <>
         <button
@@ -100,7 +100,10 @@ const Modal = () => {
         <div className="flex flex-col px-12 py-8 gap-2 bg-[#141414] justify-center rounded-b-md">
           <div className="flex gap-4 items-center font-semibold mb-4">
             <p className="text-green-400">{data?.vote_average! * 10}% Match</p>
-            <p>{data?.release_date}</p>
+            <p>{data?.release_date ?? movie?.first_air_date}</p>
+            <div className="flex h-4 justify-center items-center rounded border border-white/40 px-1.5 text-xs">
+              HD
+            </div>
           </div>
           <div className="text-white text-lg max-w-2xl mb-3">
             <p>{data?.overview}</p>
