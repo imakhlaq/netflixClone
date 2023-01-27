@@ -7,7 +7,7 @@ import { Movie } from "../typing";
 import Row from "../components/Row";
 import useAuth from "../hooks/useAuth";
 import imge from "../assets/loading.svg";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { modalState } from "../atoms/modalAtoms";
 import Modal from "../components/Modal";
 
@@ -33,7 +33,7 @@ export default function Home({
   trendingNow,
 }: Props) {
   const { loading } = useAuth();
-
+  const [showModal, setshowModal] = useRecoilState(modalState);
   const showModel = useRecoilValue(modalState);
 
   if (loading) {
