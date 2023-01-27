@@ -25,10 +25,11 @@ const Modal = () => {
       const res = await data.json();
 
       if (res?.videos) {
-        const index = res.video.results.findIndex(
+    
+        const index = res.videos.results.findIndex(
           (ele: Element) => ele.type === "Trailer"
         );
-        setTrailor(res.video?.results[index]?.key);
+        setTrailor(res.videos?.results[index]?.key);
       }
       if (res?.genres) {
         setGenres(res.genres);
@@ -38,7 +39,7 @@ const Modal = () => {
     fetchMovie();
   }, [movie]);
 
-  useEffect(() => {}, []);
+  console.log(trailor);
 
   const handleClose = () => {
     setshowModal(false);
