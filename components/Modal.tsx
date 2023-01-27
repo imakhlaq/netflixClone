@@ -3,13 +3,17 @@ import { modalState, movieState } from "../atoms/modalAtoms";
 import { useRecoilState } from "recoil";
 import { HiOutlineXMark } from "react-icons/hi2";
 import { useEffect, useState } from "react";
-import { Movie, Element, Genre } from "../typing";
+import { Element, Genre } from "../typing";
+import ReactPlayer from "react-player";
+import { FaPlay, FaThumbsUp, FaVolumeOff, FaVolumeUp } from "react-icons/fa";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 const Modal = () => {
   const [showModal, setshowModal] = useRecoilState(modalState);
   const [movie, setMovie] = useRecoilState(movieState);
   const [trailor, setTrailor] = useState("");
   const [genres, setGenres] = useState<Genre[]>([]);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     if (!movie) return;
@@ -25,7 +29,6 @@ const Modal = () => {
       const res = await data.json();
 
       if (res?.videos) {
-    
         const index = res.videos.results.findIndex(
           (ele: Element) => ele.type === "Trailer"
         );
@@ -35,18 +38,19 @@ const Modal = () => {
         setGenres(res.genres);
       }
     };
-
     fetchMovie();
   }, [movie]);
-
-  console.log(trailor);
 
   const handleClose = () => {
     setshowModal(false);
   };
 
   return (
-    <MuiModal open={showModal} onClose={handleClose}>
+    <MuiModal
+      open={showModal}
+      onClose={handleClose}
+      className="fixed !top-7 left-0 right-0 z-50 w-full max-w-5xl mx-auto overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
+    >
       <>
         <button
           onClick={handleClose}
@@ -54,7 +58,43 @@ const Modal = () => {
         >
           <HiOutlineXMark className="w-6 h-6" />
         </button>
-        <div></div>
+        {/* to make it responsive you have to provide these specific classes */}
+        <div className="relative pt-[56.25%]">
+          <ReactPlayer
+            url={`https://www.youtube.com/watch?v=${trailor}`}
+            width="100%"
+            height="100%"
+            style={{ position: "absolute", top: "0", left: "0" }}
+            playing
+            muted={isMuted}
+          />
+          <div className=" absolute bottom-10 flex w-full items-center justify-between px-10">
+            <div className="flex space-x-2">
+              <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
+                <FaPlay className="h-7 w-7 text-black" />
+                Play
+              </button>
+              <button className="modalbtn ">
+                <PlusIcon className="h-7 w-7" />
+              </button>
+              <button className="modalbtn">
+                <FaThumbsUp className="h-7 w-7" />
+              </button>
+            </div>
+            <button
+              onClick={() => setIsMuted((state: boolean) => !state)}
+              className="modalbtn"
+            >
+              {isMuted ? (
+                <FaVolumeOff className="h-6 w-6" />
+              ) : (
+                <FaVolumeUp className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        
       </>
     </MuiModal>
   );
