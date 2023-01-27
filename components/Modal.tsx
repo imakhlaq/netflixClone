@@ -97,11 +97,12 @@ const Modal = () => {
           </div>
         </div>
 
-        <div className="flex flex-col px-12 py-8 space-y-2 bg-[#141414] justify-center rounded-b-md">
-          <div>
+        <div className="flex flex-col px-12 py-8 gap-2 bg-[#141414] justify-center rounded-b-md">
+          <div className="flex gap-4 items-center font-semibold mb-4">
+            <p className="text-green-400">{data?.vote_average! * 10}% Match</p>
             <p>{data?.release_date}</p>
           </div>
-          <div className="text-white text-lg max-w-2xl mb-20">
+          <div className="text-white text-lg max-w-2xl mb-3">
             <p>{data?.overview}</p>
           </div>
           <div className="flex gap-2 ">
